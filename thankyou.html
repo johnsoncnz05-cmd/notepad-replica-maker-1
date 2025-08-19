@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Afrevo — Application Submitted</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#f6f9f7;color:#113; margin:0;padding:24px}
+    .card{max-width:900px;margin:32px auto;background:#fff;padding:24px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+    h1{color:#046; margin:0 0 12px}
+    .muted{color:#556; font-size:0.95rem}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+    .field{background:#f8fffb;padding:12px;border-radius:8px;border:1px solid #e6f2ea}
+    .label{font-weight:700;color:#064}
+    .value{margin-top:6px}
+    .guidelines{margin-top:18px}
+    .btn{display:inline-block;background:#00796b;color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+    .link-muted{color:#00796b;text-decoration:underline}
+    .print-note{margin-top:8px;font-size:.95rem;color:#666}
+    @media (max-width:640px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Application submitted — Thank you</h1>
+    <p class="muted">We received your application. Please review the summary below and follow the guidelines to prepare your documents. You will receive an email or SMS with next steps.</p>
+
+    <div id="summaryArea" class="grid" aria-live="polite">
+      <!-- populated by JS -->
+    </div>
+
+    <div class="guidelines">
+      <h3 style="margin-top:18px;color:#054">Important — Documents to prepare</h3>
+      <ul>
+        <li><strong>Passport-size photo:</strong> recent, on plain background. If you do not have one, prepare a clear digital passport photo.</li>
+        <li><strong>Passport:</strong> original passport (if available) and a soft-copy (scan or clear photo). Keep a photocopy ready.</li>
+        <li><strong>Government ID:</strong> original ID and a scanned copy / clear photo.</li>
+        <li><strong>CV / Resume:</strong> updated CV in PDF or Word, and also a printed copy if possible.</li>
+        <li><strong>Certificates / Training:</strong> soft copies (scans/photos) of key qualifications and certificates.</li>
+        <li><strong>Photocopies:</strong> bring at least two photocopies of passport & ID when requested.</li>
+      </ul>
+
+      <p class="print-note">You will be contacted by email or phone with further instructions. Please keep your phone and email accessible.</p>
+
+      <p>
+        <a id="printBtn" class="btn" href="#">View / Print PDF of this submission</a>
+        <a id="backBtn" class="btn" style="background:#004d40;margin-left:8px" href="application.html">Return to application</a>
+      </p>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const raw = sessionStorage.getItem('afrevoSubmission');
+  const area = document.getElementById('summaryArea');
+
+  if(!raw){
+    area.innerHTML = '<div style="grid-column:1/-1" class="field"><div class="label">No submission found</div><div class="value">We could not find your application summary. If you just submitted, try reopening the application form and check your email for confirmation. <a class="link-muted" href="application.html">Return to application form</a></div></div>';
+    return;
+  }
+
+  let data;
+  try { data = JSON.parse(raw); } catch (e) { data = null; }
+
+  if(!data){
+    area.innerHTML = '<div style="grid-column:1/-1" class="field"><div class="label">Invalid data</div><div class="value">There was an error reading your submission. Please contact support.</div></div>';
+    return;
+  }
+
+  function add(label, value){
+    const wrapper = document.createElement('div');
+    wrapper.className = 'field';
+    const lab = document.createElement('div'); lab.className='label'; lab.textContent = label;
+    const val = document.createElement('div'); val.className='value'; val.textContent = value || '-';
+    wrapper.appendChild(lab);
+    wrapper.appendChild(val);
+    area.appendChild(wrapper);
+  }
+
+  add('Application ID', data.applicationId || '(not provided)');
+  add('Payment Reference', data.paymentRef || '(not provided)');
+  add('Job Codes', data.jobCodes || '(not provided)');
+  add('Full Name', data.fullName || '(not provided)');
+  add('Email', data.email || '(not provided)');
+  add('Phone', data.phone || '(not provided)');
+  add('Highest Education', data.education || '(not provided)');
+  add('Most Recent Job', data.recentJob || '(not provided)');
+  add('Availability', data.availability || '(not provided)');
+  add('Work Duration Abroad', data.workDuration || '(not provided)');
+  add('Motivation (short)', data.motivation || '(not provided)');
+  add('Learning Adaptability (short)', data.learningAdaptability || '(not provided)');
+  add('Conflict Resolution (short)', data.conflictResolution || '(not provided)');
+  add('Overtime willing', data.overtime || '(not provided)');
+  add('Accept any position', data.acceptAny || '(not provided)');
+  add('Accommodation agreement', data.accommodation || '(not provided)');
+  add('Submitted At', data.submittedAt || '(time not recorded)');
+
+  // Print / PDF: open a new window with a printable HTML
+  document.getElementById('printBtn').addEventListener('click', function(e){
+    e.preventDefault();
+    const win = window.open('','_blank');
+    const html = buildPrintHtml(data);
+    win.document.open();
+    win.document.write(html);
+    win.document.close();
+  });
+
+  function buildPrintHtml(d){
+    const escape = s => (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return `<!doctype html><html><head><meta charset="utf-8"><title>Application - ${escape(d.fullName||'Applicant')}</title>
+      <style>
+        body{font-family:Arial,Helvetica,sans-serif;padding:24px;color:#111}
+        h1{color:#046}
+        table{width:100%;border-collapse:collapse;margin-top:12px}
+        td,th{padding:8px;border:1px solid #ddd;text-align:left;vertical-align:top}
+        .small{color:#666;font-size:0.9rem}
+      </style>
+    </head><body>
+      <h1>Afrevo Application Submission</h1>
+      <p class="small">Please keep this document for your records. You will be contacted via email or phone with next steps.</p>
+      <table>
+        <tr><th>Application ID</th><td>${escape(d.applicationId||'')}</td></tr>
+        <tr><th>Payment Reference</th><td>${escape(d.paymentRef||'')}</td></tr>
+        <tr><th>Job Codes</th><td>${escape(d.jobCodes||'')}</td></tr>
+        <tr><th>Full Name</th><td>${escape(d.fullName||'')}</td></tr>
+        <tr><th>Email</th><td>${escape(d.email||'')}</td></tr>
+        <tr><th>Phone</th><td>${escape(d.phone||'')}</td></tr>
+        <tr><th>Highest Education</th><td>${escape(d.education||'')}</td></tr>
+        <tr><th>Most Recent Job</th><td>${escape(d.recentJob||'')}</td></tr>
+        <tr><th>Availability</th><td>${escape(d.availability||'')}</td></tr>
+        <tr><th>Planned duration abroad</th><td>${escape(d.workDuration||'')}</td></tr>
+        <tr><th>Motivation</th><td>${escape(d.motivation||'')}</td></tr>
+        <tr><th>Learning adaptability</th><td>${escape(d.learningAdaptability||'')}</td></tr>
+        <tr><th>Conflict resolution</th><td>${escape(d.conflictResolution||'')}</td></tr>
+        <tr><th>Overtime willing</th><td>${escape(d.overtime||'')}</td></tr>
+        <tr><th>Accept any position</th><td>${escape(d.acceptAny||'')}</td></tr>
+        <tr><th>Accommodation agreement</th><td>${escape(d.accommodation||'')}</td></tr>
+        <tr><th>Submitted At</th><td>${escape(d.submittedAt||'')}</td></tr>
+      </table>
+
+      <h3>Documents to prepare</h3>
+      <ul>
+        <li>Recent passport-size photo (digital and printed)</li>
+        <li>Passport — original and soft-copy (scan or photo)</li>
+        <li>Government ID — original and soft-copy</li>
+        <li>Updated CV / Resume (PDF preferred)</li>
+        <li>Certificates & training documents (soft copies)</li>
+        <li>At least two photocopies of ID/passport when requested</li>
+      </ul>
+
+      <p class="small">When requested, present originals for verification. Afrevo will contact you by email or phone with next steps.</p>
+
+      <p><button onclick="window.print()" style="padding:10px 14px;background:#00796b;color:#fff;border:none;border-radius:6px;cursor:pointer">Print / Save as PDF</button></p>
+    </body></html>`;
+  }
+
+})();
+</script>
+</body>
+</html>

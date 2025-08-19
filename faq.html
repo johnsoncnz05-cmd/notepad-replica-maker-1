@@ -1,0 +1,401 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - Afrevo Global Careers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Base styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      font-size: 12px;
+      background-color: #f4f9fb;
+      color: #003344;
+      line-height: 1.6;
+      background: url('images/faq-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    header {
+  background-color: #004d4d;
+  color: white;
+  padding: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 45px;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(0, 77, 77, 0.95);
+        padding: 10px;
+        margin-top: 10px;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+    }
+
+    main {
+      display: flex;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    aside {
+      width: 250px;
+      position: sticky;
+      top: 20px;
+      margin-right: 20px;
+      background: #e0f2f1;
+      padding: 15px;
+      border-radius: 8px;
+      height: fit-content;
+    }
+
+    aside h3 {
+      margin-top: 0;
+      color: #004d4d;
+    }
+
+    aside ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    aside ul li {
+      margin: 10px 0;
+    }
+
+    aside ul li a {
+      color: #006666;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .faq-section {
+      flex: 1;
+    }
+
+    .faq-category {
+      margin-bottom: 40px;
+    }
+
+    .faq-category h2 {
+      color: #004d4d;
+      border-bottom: 2px solid #009688;
+      padding-bottom: 5px;
+    }
+
+    .faq {
+      margin-bottom: 15px;
+    }
+
+    .faq summary {
+      cursor: pointer;
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .faq details[open] summary {
+      background-color: #d0f0ec;
+    }
+
+    .faq p {
+      margin: 0;
+      padding: 10px;
+      background-color: #ffffff;
+    }
+
+    section.vision-section {
+      background: url('images/vision-bg.jpg') no-repeat center center / cover;
+      position: relative;
+      color: white;
+      margin-top: 40px;
+    }
+
+    .vision-content {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 60px 20px;
+      border-radius: 8px;
+    }
+
+    .vision-content h2 {
+      color: #00ffcc;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .vision-content p,
+    .vision-content blockquote {
+      max-width: 900px;
+      margin: 20px auto;
+      font-size: 1.1rem;
+      animation: fadeIn 2s ease;
+    }
+
+    blockquote {
+      font-style: italic;
+      border-left: 4px solid #00cc99;
+      padding-left: 15px;
+    }
+
+    blockquote img {
+      width: 28px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .vision-content img {
+      display: block;
+      margin: 40px auto 0;
+      max-width: 95%;
+      border-radius: 10px;
+      animation: fadeInUp 2.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #003333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: #00cc99;
+      text-decoration: none;
+      margin: 0 5px;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      color: #00ffcc;
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    function toggleMobileMenu() {
+      const navList = document.getElementById('mobileNav');
+      navList.classList.toggle('active');
+    }
+  </script>
+</head>
+<body>
+  <header>
+  <div class="header-container">
+    <div class="logo">
+      <img src="images/logo.png" alt="Afrevo Logo" />
+      <h1>Afrevo Global Careers</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="opportunities.html">Opportunities</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <nav>
+      <ul id="mobileNav">
+        <li><a href="index.html">Home</a></li> 
+        <li><a href="opportunities.html">Opportunities</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <aside>
+      <h3>Jump to Section</h3>
+      <ul>
+        <li><a href="#general">General</a></li>
+        <li><a href="#application">Application Process</a></li>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#jobs">Job Opportunities</a></li>
+        <li><a href="#visas">Visas & Travel</a></li>
+        <li><a href="#training">Training</a></li>
+      </ul>
+    </aside>
+    <div class="faq-section">
+      <!-- Category: General -->
+      <div class="faq-category" id="general">
+        <h2>General</h2>
+        <div class="faq"><details><summary>What is Afrevo Global Careers?</summary><p>Afrevo Global Careers is a leading international recruitment and outsourcing agency, dedicated to connecting talented professionals with life-changing career opportunities across the globe. We specialize in offering tailored employment solutions that empower individuals to pursue their professional aspirations and improve their lives by working abroad. By matching skilled talent with top employers, we help people achieve their career goals and unlock their full potential in dynamic, rewarding environments. At Afrevo, we are passionate about driving success, transforming lives, and helping our clients and candidates thrive in their global journeys..</p></details></div>
+     </div>
+     
+      <!-- Category: Application Process -->
+      <div class="faq-category" id="application">
+        <h2>Application Process</h2>
+        <div class="faq"><details><summary>How do I apply?</summary><p>You can apply directly through our website on the "Opportunity" page. Fill out the form then follow the necessary steps to submit and our team together with our outsourced labour will review all your applications and those shortlisted  will be contacted after .</p></details></div>
+        <div class="faq"><details><summary>Can I apply for multiple jobs?</summary><p>Yes, applicants are encouraged to apply for multiple roles that match their qualifications and interests.</p></details></div>
+        <div class="faq"><details><summary>What happens after I apply?</summary><p>Once you submit your application, our recruitment team thoroughly reviews all candidates. If you are shortlisted, you will be contacted and guided through the next steps. This includes providing detailed instructions on the required documentation, such as visa applications, passport requirements, and any other paperwork needed for international employment. We will walk you through the entire process to ensure a smooth transition and successful relocation for your new role. .</p></details></div>
+      </div>
+      
+      <!-- Category: Requirements -->
+      <div class="faq-category" id="requirements">
+        <h2>Requirements</h2>
+        <div class="faq"><details><summary>What documents are required?</summary><p>Typically, you will need to provide a valid passport, national ID,. In addition, academic certificates, including your degree, may be required, particularly for professional or specialized roles. Specific documentation requirements will be communicated to you based on the position and location you're applying for.</p></details></div>
+        <div class="faq"><details><summary>Is prior experience necessary?</summary><p>Not always. Many roles are open to entry-level applicants, especially after pre-departure training.</p></details></div>
+        <div class="faq"><details><summary>What level of education is needed?</summary><p>It depends on the role. Unskilled jobs may not require formal education; skilled/professional jobs usually do.</p></details></div>
+      </div>
+      
+      <!-- Category: Job Opportunities -->
+      <div class="faq-category" id="jobs">
+        <h2>Job Opportunities</h2>
+        <div class="faq"><details><summary>Which regions do you offer employment oppotyunities?</summary><p>We recruit top talent for some of the world’s most sought-after destinations, including the USA, Germany, Iceland, Denmark, Sweden, Poland, Gulf states, Canada, Norway and many more. With established contracts and strong relationships with leading companies in these regions, we offer our candidates exclusive access to a wide range of career opportunities, ensuring a seamless and rewarding global career journey. </p></details></div>
+        <div class="faq"><details><summary>What types of jobs are available?</summary><p>We have a lot of job offer we recruit for professional , skilled and unskilled positions browse through our opportunities to apply for a job.</p></details></div>
+        <div class="faq"><details><summary>Is the salary guaranteed?</summary><p>Yes, once you’re placed, your salary is guaranteed under contract with the employer.</p></details></div>
+      </div>
+      
+      <!-- Category: Visas & Travel -->
+      <div class="faq-category" id="visas">
+        <h2>Visas & Travel</h2>
+        <div class="faq"><details><summary>Do you help with visas?</summary><p>Yes, we guide and help successful applicants through the visa application and travel process.</p></details></div>
+        <div class="faq"><details><summary>Who pays for the flight?</summary><p>Depending on the employer, either they or the applicant covers the flight. This is disclosed upfront.</p></details></div>
+        <div class="faq"><details><summary>What if my visa is denied?</summary><p>We explore alternatives or assist you in reapplying. Denials are rare if documents are correct.</p></details></div>
+      </div>
+   <!-- Category: Pre-Departure & Support -->
+<div class="faq-category" id="support">
+  <h2>Pre-Departure & Support</h2>
+
+  <div class="faq">
+    <details>
+      <summary>Will I receive assistance with relocation?</summary>
+      <p>Yes. Afrevo Global Careers provides end-to-end relocation support including travel coordination, accommodation arrangements (if included), and destination guidance to ensure a smooth transition.</p>
+    </details>
+  </div>
+
+  <div class="faq">
+    <details>
+      <summary>Is there language support or cultural orientation?</summary>
+      <p>Absolutely. We provide cultural orientation and basic language familiarization to help candidates adapt faster in their new country of employment.</p>
+    </details>
+  </div>
+
+  <div class="faq">
+    <details>
+      <summary>Do I need to take medical tests?</summary>
+      <p>Yes. Most employers and countries require a basic medical check-up. We’ll guide you through certified clinics and what’s expected depending on your destination.</p>
+    </details>
+  </div>
+
+  <div class="faq">
+    <details>
+      <summary>Will Afrevo help if I face issues after I arrive?</summary>
+      <p>Yes. Our post-deployment support ensures you have a contact point in case of emergencies or job-related concerns during your initial months abroad.</p>
+    </details>
+  </div>
+
+  <div class="faq">
+    <details>
+      <summary>Can I extend my contract or apply again after it ends?</summary>
+      <p>Many of our candidates reapply or extend their contracts. We work closely with employers to explore options for extensions or transitions to new roles where possible.</p>
+    </details>
+  </div>
+</div>
+
+      
+      <!-- Category: Training -->
+      <div class="faq-category" id="training">
+        <h2>Training</h2>
+        <div class="faq"><details><summary>Is there training before departure?</summary><p>Yes, all candidates receive prevocational training depending on their choice of job to prepare them for the destination country and job duties.</p></details></div>
+        <div class="faq"><details><summary>How long is the training?</summary><p>Training durations vary from 2 to 4 weeks depending on the job category and country.</p></details></div>
+        <div class="faq"><details><summary>Do I need to pay for training?</summary><p>Basic training is often free or subsidized by employers. Any fees will be clearly communicated.</p></details></div>
+      </div>
+    </div>
+  </main>
+
+  <section class="vision-section">
+    <div class="vision-content">
+      <h2>Our Vision</h1>
+      <p>
+        To be the leading recruitment partner recognized for our dedication to quality, innovation, and integrity in global workforce solutions.
+        We envision a world where borders do not limit potential where individuals from all backgrounds can access international opportunities that match their skills, dreams, and aspirations.We are committed to building a future where talent knows no boundaries and opportunity is universal.
+ At Afrevo, we believe in uplifting communities by unlocking access to life-changing employment abroad while ensuring ethical recruitment practices and comprehensive support systems for every applicant.
+      </p>
+       </p>
+      <blockquote>
+        <img src="images/img5.jpg" alt="Empowering dreams, connecting nations through opportunity" style="width: 150%; max-width: 700px; height: auto; display: block; margin: 20px auto; border-radius: 5px;" />
+      </blockquote>
+      <p>
+      
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Afrevo Global Careers. All rights reserved.</p>
+    <p>
+      <a href="terms.html">Terms of Service</a> |
+      <a href="index.html#contact-info">Contact Us</a>
+    </p>
+    <p>
+          <p>Follow us on <a href="#">Instagram</a>, <a href="#">Tiktok</a>, <a href="#">Twitter</a></p>
+
+    </p>
+  </footer>
+</body>
+</html>

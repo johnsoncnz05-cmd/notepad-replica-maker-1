@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Afrevo Global Careers — Application</title>
+
+  <!-- Paystack inline -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <style>
+    :root{
+      --accent: #00796b;
+      --accent-dark: #004d40;
+      --bg1: #f4fffb;
+      --muted: #6b6b6b;
+      --card-radius: 14px;
+      --maxw: 1200px;
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg,#eafaf3 0%, #f0f7ff 100%);
+      margin:0;color:#222;padding:24px;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand img{height:56px;border-radius:8px;object-fit:contain}
+    h1{font-size:1.25rem;margin:0;color:var(--accent-dark)}
+    .card{background:#fff;border-radius:var(--card-radius);box-shadow:0 8px 30px rgba(8,30,30,0.06);padding:28px}
+    h2{margin-top:0;color:var(--accent-dark);text-align:center}
+    fieldset{border:0;margin:0 0 18px;padding:0}
+    legend{font-weight:700;color:#0b5b50;margin-bottom:8px}
+    label{display:block;margin:8px 0 6px;font-weight:600}
+    input[type="text"],input[type="email"],input[type="date"],input[type="tel"],textarea,select{
+      width:100%;padding:12px;border-radius:10px;border:1px solid #e6eef0;font-size:0.97rem;
+    }
+    textarea{min-height:100px;resize:vertical}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .col{flex:1;min-width:220px}
+    .note{color:var(--muted);font-size:0.95rem}
+    .payment-note{background:#fffaf0;border:1px solid #ffe8b5;padding:12px;border-radius:10px}
+    footer{color:#6b6b6b;text-align:center;margin-top:16px;font-size:0.9rem}
+
+    .pay-button{
+      display:inline-flex;align-items:center;gap:12px;border:0;padding:14px 20px;border-radius:12px;
+      background-image: linear-gradient(90deg,#00c29a,#00796b);
+      color:white;font-weight:800;font-size:1.02rem;cursor:pointer;box-shadow:0 8px 24px rgba(0,121,95,0.18);
+      transition:transform .12s ease,box-shadow .12s ease;
+    }
+    .pay-button:active{transform:translateY(1px)}
+    .pay-button[disabled]{opacity:.6;cursor:not-allowed}
+    .pay-icon{
+      width:34px;height:34px;border-radius:8px;background:white;display:inline-flex;align-items:center;justify-content:center;
+      box-shadow:0 6px 16px rgba(0,0,0,0.08)
+    }
+    .pay-icon svg{width:18px;height:18px;display:block}
+    .flex-right{display:flex;align-items:center;gap:12px}
+    @media (max-width:720px){ .row{flex-direction:column} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="https://i.imgur.com/2xJX9mG.png" alt="Afrevo logo" />
+        <div>
+          <h1>Afrevo Global Careers</h1>
+          <div class="note">Secure applications & fast processing</div>
+        </div>
+      </div>
+      <nav class="note">Home • Opportunities • FAQ</nav>
+    </header>
+
+    <main class="card" role="main" aria-labelledby="formTitle">
+      <h2 id="formTitle">Application Form — Afrevo Global Careers</h2>
+
+      <form id="applicationForm" method="POST" novalidate>
+        <!-- useful hidden fields -->
+        <input type="hidden" name="SubmissionType" value="APPLICATION" />
+        <input type="hidden" name="PaidAmountUSD" value="4.99" />
+        <input type="hidden" name="PaidAmountKES" value="400" />
+
+        <!-- ========== JOB CODE ========== -->
+        <fieldset>
+          <legend>Job Code Quiz</legend>
+          <label for="Job-Codes">Enter job codes (separate with #)</label>
+          <input type="text" name="Job Codes" id="Job-Codes" placeholder="WTR12#DRI34#NUR89" required />
+          <p class="note">Example: WTR12#DRI34#NUR89</p>
+        </fieldset>
+
+        <!-- ========== PERSONAL INFORMATION ========== -->
+        <fieldset>
+          <legend>Personal Information</legend>
+
+          <div class="row">
+            <div class="col">
+              <label>Full Name</label>
+              <input type="text" name="Full Name" required />
+            </div>
+            <div class="col">
+              <label>Date of Birth</label>
+              <input type="date" name="Date of Birth" required />
+            </div>
+          </div>
+
+          <label for="ID-Number">Government ID Number</label>
+          <input type="text" id="ID-Number" name="ID Number" placeholder="Enter ID number" required />
+
+          <div class="row">
+            <div class="col">
+              <label>Nationality</label>
+              <select name="Nationality" required>
+                <option value="">Select nationality</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option>
+                <option value="Andorra">Andorra</option>
+                <option value="Angola">Angola</option>
+                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Armenia">Armenia</option>
+                <option value="Australia">Australia</option>
+                <option value="Austria">Austria</option>
+                <option value="Azerbaijan">Azerbaijan</option>
+                <option value="Bahamas">Bahamas</option>
+                <option value="Bahrain">Bahrain</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Barbados">Barbados</option>
+                <option value="Belarus">Belarus</option>
+                <option value="Belgium">Belgium</option>
+                <option value="Belize">Belize</option>
+                <option value="Benin">Benin</option>
+                <option value="Bhutan">Bhutan</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                <option value="Botswana">Botswana</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Brunei">Brunei</option>
+                <option value="Bulgaria">Bulgaria</option>
+                <option value="Burkina Faso">Burkina Faso</option>
+                <option value="Burundi">Burundi</option>
+                <option value="Cabo Verde">Cabo Verde</option>
+                <option value="Cambodia">Cambodia</option>
+                <option value="Cameroon">Cameroon</option>
+                <option value="Canada">Canada</option>
+                <option value="Central African Republic">Central African Republic</option>
+                <option value="Chad">Chad</option>
+                <option value="Chile">Chile</option>
+                <option value="China">China</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Comoros">Comoros</option>
+                <option value="Congo (Brazzaville)">Congo (Brazzaville)</option>
+                <option value="Congo (Kinshasa)">Congo (Kinshasa)</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="Croatia">Croatia</option>
+                <option value="Cuba">Cuba</option>
+                <option value="Cyprus">Cyprus</option>
+                <option value="Czech Republic">Czech Republic</option>
+                <option value="Denmark">Denmark</option>
+                <option value="Djibouti">Djibouti</option>
+                <option value="Dominica">Dominica</option>
+                <option value="Dominican Republic">Dominican Republic</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="Egypt">Egypt</option>
+                <option value="El Salvador">El Salvador</option>
+                <option value="Equatorial Guinea">Equatorial Guinea</option>
+                <option value="Eritrea">Eritrea</option>
+                <option value="Estonia">Estonia</option>
+                <option value="Eswatini">Eswatini</option>
+                <option value="Ethiopia">Ethiopia</option>
+                <option value="Fiji">Fiji</option>
+                <option value="Finland">Finland</option>
+                <option value="France">France</option>
+                <option value="Gabon">Gabon</option>
+                <option value="Gambia">Gambia</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Germany">Germany</option>
+                <option value="Ghana">Ghana</option>
+                <option value="Greece">Greece</option>
+                <option value="Grenada">Grenada</option>
+                <option value="Guatemala">Guatemala</option>
+                <option value="Guinea">Guinea</option>
+                <option value="Guinea-Bissau">Guinea-Bissau</option>
+                <option value="Guyana">Guyana</option>
+                <option value="Haiti">Haiti</option>
+                <option value="Honduras">Honduras</option>
+                <option value="Hungary">Hungary</option>
+                <option value="Iceland">Iceland</option>
+                <option value="India">India</option>
+                <option value="Indonesia">Indonesia</option>
+                <option value="Iran">Iran</option>
+                <option value="Iraq">Iraq</option>
+                <option value="Ireland">Ireland</option>
+                <option value="Israel">Israel</option>
+                <option value="Italy">Italy</option>
+                <option value="Ivory Coast">Ivory Coast</option>
+                <option value="Jamaica">Jamaica</option>
+                <option value="Japan">Japan</option>
+                <option value="Jordan">Jordan</option>
+                <option value="Kazakhstan">Kazakhstan</option>
+                <option value="Kenya">Kenya</option>
+                <option value="Kiribati">Kiribati</option>
+                <option value="Kuwait">Kuwait</option>
+                <option value="Kyrgyzstan">Kyrgyzstan</option>
+                <option value="Laos">Laos</option>
+                <option value="Latvia">Latvia</option>
+                <option value="Lebanon">Lebanon</option>
+                <option value="Lesotho">Lesotho</option>
+                <option value="Liberia">Liberia</option>
+                <option value="Libya">Libya</option>
+                <option value="Liechtenstein">Liechtenstein</option>
+                <option value="Lithuania">Lithuania</option>
+                <option value="Luxembourg">Luxembourg</option>
+                <option value="Madagascar">Madagascar</option>
+                <option value="Malawi">Malawi</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Maldives">Maldives</option>
+                <option value="Mali">Mali</option>
+                <option value="Malta">Malta</option>
+                <option value="Marshall Islands">Marshall Islands</option>
+                <option value="Mauritania">Mauritania</option>
+                <option value="Mauritius">Mauritius</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Micronesia">Micronesia</option>
+                <option value="Moldova">Moldova</option>
+                <option value="Monaco">Monaco</option>
+                <option value="Mongolia">Mongolia</option>
+                <option value="Montenegro">Montenegro</option>
+                <option value="Morocco">Morocco</option>
+                <option value="Mozambique">Mozambique</option>
+                <option value="Myanmar">Myanmar</option>
+                <option value="Namibia">Namibia</option>
+                <option value="Nauru">Nauru</option>
+                <option value="Nepal">Nepal</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="New Zealand">New Zealand</option>
+                <option value="Nicaragua">Nicaragua</option>
+                <option value="Niger">Niger</option>
+                <option value="Nigeria">Nigeria</option>
+                <option value="North Korea">North Korea</option>
+                <option value="North Macedonia">North Macedonia</option>
+                <option value="Norway">Norway</option>
+                <option value="Oman">Oman</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="Palau">Palau</option>
+                <option value="Panama">Panama</option>
+                <option value="Papua New Guinea">Papua New Guinea</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Peru">Peru</option>
+                <option value="Philippines">Philippines</option>
+                <option value="Poland">Poland</option>
+                <option value="Portugal">Portugal</option>
+                <option value="Qatar">Qatar</option>
+                <option value="Romania">Romania</option>
+                <option value="Russia">Russia</option>
+                <option value="Rwanda">Rwanda</option>
+                <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                <option value="Saint Lucia">Saint Lucia</option>
+                <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                <option value="Samoa">Samoa</option>
+                <option value="San Marino">San Marino</option>
+                <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+                <option value="Senegal">Senegal</option>
+                <option value="Serbia">Serbia</option>
+                <option value="Seychelles">Seychelles</option>
+                <option value="Sierra Leone">Sierra Leone</option>
+                <option value="Singapore">Singapore</option>
+                <option value="Slovakia">Slovakia</option>
+                <option value="Slovenia">Slovenia</option>
+                <option value="Solomon Islands">Solomon Islands</option>
+                <option value="Somalia">Somalia</option>
+                <option value="South Africa">South Africa</option>
+                <option value="South Korea">South Korea</option>
+                <option value="South Sudan">South Sudan</option>
+                <option value="Spain">Spain</option>
+                <option value="Sri Lanka">Sri Lanka</option>
+                <option value="Sudan">Sudan</option>
+                <option value="Suriname">Suriname</option>
+                <option value="Sweden">Sweden</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="Syria">Syria</option>
+                <option value="Taiwan">Taiwan</option>
+                <option value="Tajikistan">Tajikistan</option>
+                <option value="Tanzania">Tanzania</option>
+                <option value="Thailand">Thailand</option>
+                <option value="Timor-Leste">Timor-Leste</option>
+                <option value="Togo">Togo</option>
+                <option value="Tonga">Tonga</option>
+                <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                <option value="Tunisia">Tunisia</option>
+                <option value="Turkey">Turkey</option>
+                <option value="Turkmenistan">Turkmenistan</option>
+                <option value="Tuvalu">Tuvalu</option>
+                <option value="Uganda">Uganda</option>
+                <option value="Ukraine">Ukraine</option>
+                <option value="United Arab Emirates">United Arab Emirates</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="United States">United States</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Uzbekistan">Uzbekistan</option>
+                <option value="Vanuatu">Vanuatu</option>
+                <option value="Vatican City">Vatican City</option>
+                <option value="Venezuela">Venezuela</option>
+                <option value="Vietnam">Vietnam</option>
+                <option value="Yemen">Yemen</option>
+                <option value="Zambia">Zambia</option>
+                <option value="Zimbabwe">Zimbabwe</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label>Country of Residence</label>
+              <select name="Country of Residence" required>
+                <option value="">Select your country of residence</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option>
+                <option value="Andorra">Andorra</option>
+                <option value="Angola">Angola</option>
+                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Armenia">Armenia</option>
+                <option value="Australia">Australia</option>
+                <option value="Austria">Austria</option>
+                <option value="Azerbaijan">Azerbaijan</option>
+                <option value="Bahamas">Bahamas</option>
+                <option value="Bahrain">Bahrain</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Barbados">Barbados</option>
+                <option value="Belarus">Belarus</option>
+                <option value="Belgium">Belgium</option>
+                <option value="Belize">Belize</option>
+                <option value="Benin">Benin</option>
+                <option value="Bhutan">Bhutan</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                <option value="Botswana">Botswana</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Brunei">Brunei</option>
+                <option value="Bulgaria">Bulgaria</option>
+                <option value="Burkina Faso">Burkina Faso</option>
+                <option value="Burundi">Burundi</option>
+                <option value="Cabo Verde">Cabo Verde</option>
+                <option value="Cambodia">Cambodia</option>
+                <option value="Cameroon">Cameroon</option>
+                <option value="Canada">Canada</option>
+                <option value="Central African Republic">Central African Republic</option>
+                <option value="Chad">Chad</option>
+                <option value="Chile">Chile</option>
+                <option value="China">China</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Comoros">Comoros</option>
+                <option value="Congo (Brazzaville)">Congo (Brazzaville)</option>
+                <option value="Congo (Kinshasa)">Congo (Kinshasa)</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="Croatia">Croatia</option>
+                <option value="Cuba">Cuba</option>
+                <option value="Cyprus">Cyprus</option>
+                <option value="Czech Republic">Czech Republic</option>
+                <option value="Denmark">Denmark</option>
+                <option value="Djibouti">Djibouti</option>
+                <option value="Dominica">Dominica</option>
+                <option value="Dominican Republic">Dominican Republic</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="Egypt">Egypt</option>
+                <option value="El Salvador">El Salvador</option>
+                <option value="Equatorial Guinea">Equatorial Guinea</option>
+                <option value="Eritrea">Eritrea</option>
+                <option value="Estonia">Estonia</option>
+                <option value="Eswatini">Eswatini</option>
+                <option value="Ethiopia">Ethiopia</option>
+                <option value="Fiji">Fiji</option>
+                <option value="Finland">Finland</option>
+                <option value="France">France</option>
+                <option value="Gabon">Gabon</option>
+                <option value="Gambia">Gambia</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Germany">Germany</option>
+                <option value="Ghana">Ghana</option>
+                <option value="Greece">Greece</option>
+                <option value="Grenada">Grenada</option>
+                <option value="Guatemala">Guatemala</option>
+                <option value="Guinea">Guinea</option>
+                <option value="Guinea-Bissau">Guinea-Bissau</option>
+                <option value="Guyana">Guyana</option>
+                <option value="Haiti">Haiti</option>
+                <option value="Honduras">Honduras</option>
+                <option value="Hungary">Hungary</option>
+                <option value="Iceland">Iceland</option>
+                <option value="India">India</option>
+                <option value="Indonesia">Indonesia</option>
+                <option value="Iran">Iran</option>
+                <option value="Iraq">Iraq</option>
+                <option value="Ireland">Ireland</option>
+                <option value="Israel">Israel</option>
+                <option value="Italy">Italy</option>
+                <option value="Ivory Coast">Ivory Coast</option>
+                <option value="Jamaica">Jamaica</option>
+                <option value="Japan">Japan</option>
+                <option value="Jordan">Jordan</option>
+                <option value="Kazakhstan">Kazakhstan</option>
+                <option value="Kenya">Kenya</option>
+                <option value="Kiribati">Kiribati</option>
+                <option value="Kuwait">Kuwait</option>
+                <option value="Kyrgyzstan">Kyrgyzstan</option>
+                <option value="Laos">Laos</option>
+                <option value="Latvia">Latvia</option>
+                <option value="Lebanon">Lebanon</option>
+                <option value="Lesotho">Lesotho</option>
+                <option value="Liberia">Liberia</option>
+                <option value="Libya">Libya</option>
+                <option value="Liechtenstein">Liechtenstein</option>
+                <option value="Lithuania">Lithuania</option>
+                <option value="Luxembourg">Luxembourg</option>
+                <option value="Madagascar">Madagascar</option>
+                <option value="Malawi">Malawi</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Maldives">Maldives</option>
+                <option value="Mali">Mali</option>
+                <option value="Malta">Malta</option>
+                <option value="Marshall Islands">Marshall Islands</option>
+                <option value="Mauritania">Mauritania</option>
+                <option value="Mauritius">Mauritius</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Micronesia">Micronesia</option>
+                <option value="Moldova">Moldova</option>
+                <option value="Monaco">Monaco</option>
+                <option value="Mongolia">Mongolia</option>
+                <option value="Montenegro">Montenegro</option>
+                <option value="Morocco">Morocco</option>
+                <option value="Mozambique">Mozambique</option>
+                <option value="Myanmar">Myanmar</option>
+                <option value="Namibia">Namibia</option>
+                <option value="Nauru">Nauru</option>
+                <option value="Nepal">Nepal</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="New Zealand">New Zealand</option>
+                <option value="Nicaragua">Nicaragua</option>
+                <option value="Niger">Niger</option>
+                <option value="Nigeria">Nigeria</option>
+                <option value="North Korea">North Korea</option>
+                <option value="North Macedonia">North Macedonia</option>
+                <option value="Norway">Norway</option>
+                <option value="Oman">Oman</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="Palau">Palau</option>
+                <option value="Panama">Panama</option>
+                <option value="Papua New Guinea">Papua New Guinea</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Peru">Peru</option>
+                <option value="Philippines">Philippines</option>
+                <option value="Poland">Poland</option>
+                <option value="Portugal">Portugal</option>
+                <option value="Qatar">Qatar</option>
+                <option value="Romania">Romania</option>
+                <option value="Russia">Russia</option>
+                <option value="Rwanda">Rwanda</option>
+                <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                <option value="Saint Lucia">Saint Lucia</option>
+                <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                <option value="Samoa">Samoa</option>
+                <option value="San Marino">San Marino</option>
+                <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+                <option value="Senegal">Senegal</option>
+                <option value="Serbia">Serbia</option>
+                <option value="Seychelles">Seychelles</option>
+                <option value="Sierra Leone">Sierra Leone</option>
+                <option value="Singapore">Singapore</option>
+                <option value="Slovakia">Slovakia</option>
+                <option value="Slovenia">Slovenia</option>
+                <option value="Solomon Islands">Solomon Islands</option>
+                <option value="Somalia">Somalia</option>
+                <option value="South Africa">South Africa</option>
+                <option value="South Korea">South Korea</option>
+                <option value="South Sudan">South Sudan</option>
+                <option value="Spain">Spain</option>
+                <option value="Sri Lanka">Sri Lanka</option>
+                <option value="Sudan">Sudan</option>
+                <option value="Suriname">Suriname</option>
+                <option value="Sweden">Sweden</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="Syria">Syria</option>
+                <option value="Taiwan">Taiwan</option>
+                <option value="Tajikistan">Tajikistan</option>
+                <option value="Tanzania">Tanzania</option>
+                <option value="Thailand">Thailand</option>
+                <option value="Timor-Leste">Timor-Leste</option>
+                <option value="Togo">Togo</option>
+                <option value="Tonga">Tonga</option>
+                <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                <option value="Tunisia">Tunisia</option>
+                <option value="Turkey">Turkey</option>
+                <option value="Turkmenistan">Turkmenistan</option>
+                <option value="Tuvalu">Tuvalu</option>
+                <option value="Uganda">Uganda</option>
+                <option value="Ukraine">Ukraine</option>
+                <option value="United Arab Emirates">United Arab Emirates</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="United States">United States</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Uzbekistan">Uzbekistan</option>
+                <option value="Vanuatu">Vanuatu</option>
+                <option value="Vatican City">Vatican City</option>
+                <option value="Venezuela">Venezuela</option>
+                <option value="Vietnam">Vietnam</option>
+                <option value="Yemen">Yemen</option>
+                <option value="Zambia">Zambia</option>
+                <option value="Zimbabwe">Zimbabwe</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="country-code">Phone Number</label>
+          <div class="row">
+            <select name="Country Code" id="country-code" required style="flex:1; min-width: 200px; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+              <option value="">Select country code</option>
+              <option value="+93">Afghanistan (+93)</option>
+              <option value="+355">Albania (+355)</option>
+              <option value="+213">Algeria (+213)</option>
+              <option value="+376">Andorra (+376)</option>
+              <option value="+244">Angola (+244)</option>
+              <option value="+1-268">Antigua and Barbuda (+1-268)</option>
+              <option value="+54">Argentina (+54)</option>
+              <option value="+374">Armenia (+374)</option>
+              <option value="+61">Australia (+61)</option>
+              <option value="+43">Austria (+43)</option>
+              <option value="+994">Azerbaijan (+994)</option>
+              <option value="+973">Bahrain (+973)</option>
+              <option value="+880">Bangladesh (+880)</option>
+              <option value="+1-246">Barbados (+1-246)</option>
+              <option value="+375">Belarus (+375)</option>
+              <option value="+32">Belgium (+32)</option>
+              <option value="+501">Belize (+501)</option>
+              <option value="+229">Benin (+229)</option>
+              <option value="+975">Bhutan (+975)</option>
+              <option value="+591">Bolivia (+591)</option>
+              <option value="+387">Bosnia and Herzegovina (+387)</option>
+              <option value="+267">Botswana (+267)</option>
+              <option value="+55">Brazil (+55)</option>
+              <option value="+673">Brunei (+673)</option>
+              <option value="+359">Bulgaria (+359)</option>
+              <option value="+226">Burkina Faso (+226)</option>
+              <option value="+257">Burundi (+257)</option>
+              <option value="+855">Cambodia (+855)</option>
+              <option value="+237">Cameroon (+237)</option>
+              <option value="+1">Canada (+1)</option>
+              <option value="+238">Cape Verde (+238)</option>
+              <option value="+236">Central African Republic (+236)</option>
+              <option value="+235">Chad (+235)</option>
+              <option value="+56">Chile (+56)</option>
+              <option value="+86">China (+86)</option>
+              <option value="+57">Colombia (+57)</option>
+              <option value="+269">Comoros (+269)</option>
+              <option value="+242">Congo - Brazzaville (+242)</option>
+              <option value="+243">Congo - Kinshasa (+243)</option>
+              <option value="+506">Costa Rica (+506)</option>
+              <option value="+385">Croatia (+385)</option>
+              <option value="+53">Cuba (+53)</option>
+              <option value="+357">Cyprus (+357)</option>
+              <option value="+420">Czech Republic (+420)</option>
+              <option value="+45">Denmark (+45)</option>
+              <option value="+253">Djibouti (+253)</option>
+              <option value="+1-767">Dominica (+1-767)</option>
+              <option value="+1-809">Dominican Republic (+1-809)</option>
+              <option value="+593">Ecuador (+593)</option>
+              <option value="+20">Egypt (+20)</option>
+              <option value="+503">El Salvador (+503)</option>
+              <option value="+240">Equatorial Guinea (+240)</option>
+              <option value="+291">Eritrea (+291)</option>
+              <option value="+372">Estonia (+372)</option>
+              <option value="+251">Ethiopia (+251)</option>
+              <option value="+679">Fiji (+679)</option>
+              <option value="+358">Finland (+358)</option>
+              <option value="+33">France (+33)</option>
+              <option value="+241">Gabon (+241)</option>
+              <option value="+220">Gambia (+220)</option>
+              <option value="+995">Georgia (+995)</option>
+              <option value="+49">Germany (+49)</option>
+              <option value="+233">Ghana (+233)</option>
+              <option value="+30">Greece (+30)</option>
+              <option value="+502">Guatemala (+502)</option>
+              <option value="+224">Guinea (+224)</option>
+              <option value="+245">Guinea-Bissau (+245)</option>
+              <option value="+592">Guyana (+592)</option>
+              <option value="+509">Haiti (+509)</option>
+              <option value="+504">Honduras (+504)</option>
+              <option value="+36">Hungary (+36)</option>
+              <option value="+91">India (+91)</option>
+              <option value="+62">Indonesia (+62)</option>
+              <option value="+98">Iran (+98)</option>
+              <option value="+964">Iraq (+964)</option>
+              <option value="+353">Ireland (+353)</option>
+              <option value="+972">Israel (+972)</option>
+              <option value="+39">Italy (+39)</option>
+              <option value="+225">Ivory Coast (+225)</option>
+              <option value="+81">Japan (+81)</option>
+              <option value="+962">Jordan (+962)</option>
+              <option value="+7">Kazakhstan (+7)</option>
+              <option value="+254">Kenya (+254)</option>
+              <option value="+82">South Korea (+82)</option>
+              <option value="+965">Kuwait (+965)</option>
+              <option value="+996">Kyrgyzstan (+996)</option>
+              <option value="+856">Laos (+856)</option>
+              <option value="+371">Latvia (+371)</option>
+              <option value="+961">Lebanon (+961)</option>
+              <option value="+266">Lesotho (+266)</option>
+              <option value="+231">Liberia (+231)</option>
+              <option value="+218">Libya (+218)</option>
+              <option value="+370">Lithuania (+370)</option>
+              <option value="+352">Luxembourg (+352)</option>
+              <option value="+261">Madagascar (+261)</option>
+              <option value="+265">Malawi (+265)</option>
+              <option value="+60">Malaysia (+60)</option>
+              <option value="+960">Maldives (+960)</option>
+              <option value="+223">Mali (+223)</option>
+              <option value="+356">Malta (+356)</option>
+              <option value="+222">Mauritania (+222)</option>
+              <option value="+230">Mauritius (+230)</option>
+              <option value="+52">Mexico (+52)</option>
+              <option value="+373">Moldova (+373)</option>
+              <option value="+976">Mongolia (+976)</option>
+              <option value="+212">Morocco (+212)</option>
+              <option value="+258">Mozambique (+258)</option>
+              <option value="+95">Myanmar (+95)</option>
+              <option value="+264">Namibia (+264)</option>
+              <option value="+977">Nepal (+977)</option>
+              <option value="+31">Netherlands (+31)</option>
+              <option value="+64">New Zealand (+64)</option>
+              <option value="+505">Nicaragua (+505)</option>
+              <option value="+227">Niger (+227)</option>
+              <option value="+234">Nigeria (+234)</option>
+              <option value="+47">Norway (+47)</option>
+              <option value="+968">Oman (+968)</option>
+              <option value="+92">Pakistan (+92)</option>
+              <option value="+507">Panama (+507)</option>
+              <option value="+595">Paraguay (+595)</option>
+              <option value="+51">Peru (+51)</option>
+              <option value="+63">Philippines (+63)</option>
+              <option value="+48">Poland (+48)</option>
+              <option value="+351">Portugal (+351)</option>
+              <option value="+974">Qatar (+974)</option>
+              <option value="+40">Romania (+40)</option>
+              <option value="+7">Russia (+7)</option>
+              <option value="+250">Rwanda (+250)</option>
+              <option value="+966">Saudi Arabia (+966)</option>
+              <option value="+221">Senegal (+221)</option>
+              <option value="+248">Seychelles (+248)</option>
+              <option value="+232">Sierra Leone (+232)</option>
+              <option value="+65">Singapore (+65)</option>
+              <option value="+421">Slovakia (+421)</option>
+              <option value="+386">Slovenia (+386)</option>
+              <option value="+27">South Africa (+27)</option>
+              <option value="+211">South Sudan (+211)</option>
+              <option value="+34">Spain (+34)</option>
+              <option value="+94">Sri Lanka (+94)</option>
+              <option value="+249">Sudan (+249)</option>
+              <option value="+46">Sweden (+46)</option>
+              <option value="+41">Switzerland (+41)</option>
+              <option value="+963">Syria (+963)</option>
+              <option value="+886">Taiwan (+886)</option>
+              <option value="+255">Tanzania (+255)</option>
+              <option value="+66">Thailand (+66)</option>
+              <option value="+228">Togo (+228)</option>
+              <option value="+216">Tunisia (+216)</option>
+              <option value="+90">Turkey (+90)</option>
+              <option value="+256">Uganda (+256)</option>
+              <option value="+380">Ukraine (+380)</option>
+              <option value="+971">United Arab Emirates (+971)</option>
+              <option value="+44">United Kingdom (+44)</option>
+              <option value="+1">United States (+1)</option>
+              <option value="+598">Uruguay (+598)</option>
+              <option value="+998">Uzbekistan (+998)</option>
+              <option value="+58">Venezuela (+58)</option>
+              <option value="+84">Vietnam (+84)</option>
+              <option value="+967">Yemen (+967)</option>
+              <option value="+260">Zambia (+260)</option>
+              <option value="+263">Zimbabwe (+263)</option>
+            </select>
+            <input type="tel" name="Phone Number" placeholder="Enter number" required style="flex:2" />
+          </div>
+
+          <label>Email</label>
+          <input type="email" name="Email Address" required />
+
+          <div class="row">
+            <div class="col">
+              <label>Marital Status</label>
+              <select name="Marital Status">
+                <option value="">Select</option>
+                <option>Single</option>
+                <option>Married</option>
+                <option>Divorced</option>
+                <option>Widowed</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>religious affiliation?</label>
+              <input type="text" name="religious affiliation?" placeholder="Optional" />
+            </div>
+            <div class="col">
+              <label>Gender</label>
+              <select name="Gender">
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Number of Dependents</label>
+              <input type="text" name="Number of Dependents" placeholder="e.g., 0, 1, 2..." />
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ========== EDUCATION & TRAINING ========== -->
+        <fieldset>
+          <legend>Education & Training</legend>
+          <div class="row">
+            <div class="col">
+              <label>Education Level</label>
+              <input type="text" name="Education Level" required>
+            </div>
+            <div class="col">
+              <label>Institution Name</label>
+              <input type="text" name="Institution Name">
+            </div>
+            <div class="col">
+              <label>Graduation Year</label>
+              <input type="text" name="Graduation Year" placeholder="e.g., 2021">
+            </div>
+          </div>
+
+          <label>Technical Training</label>
+          <textarea name="Technical Training" placeholder="Any technical or vocational training?"></textarea>
+
+          <div class="row">
+            <div class="col">
+              <label>English Proficiency</label>
+              <select name="English Proficiency">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Other Languages</label>
+              <input type="text" name="Other Languages" placeholder="e.g., Swahili, French"/>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ========== WORK EXPERIENCE ========== -->
+        <fieldset>
+          <legend>Work Experience</legend>
+
+          <label>Previous Jobs</label>
+          <textarea name="Previous Jobs" placeholder="What type of jobs have you done?"></textarea>
+
+          <div class="row">
+            <div class="col">
+              <label>Years of Experience</label>
+              <input type="text" name="Years of Experience">
+            </div>
+            <div class="col">
+              <label>Recent Job</label>
+              <input type="text" name="Recent Job">
+            </div>
+          </div>
+
+          <label>Reason for Leaving</label>
+          <textarea name="Reason for Leaving"></textarea>
+
+          <label>Overseas Experience</label>
+          <textarea name="Overseas Experience" placeholder="Have you worked overseas before? If yes, where?"></textarea>
+
+          <div class="row">
+            <div class="col">
+              <label>Machinery Experience</label>
+              <select name="Machinery Experience">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Physically Demanding Work</label>
+              <select name="Physically Demanding Work">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Night Shift Experience</label>
+              <select name="Night Shift Experience">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ========== AVAILABILITY & TRAVEL ========== -->
+        <fieldset>
+          <legend>Availability & Travel</legend>
+
+          <div class="row">
+            <div class="col">
+              <label>Willing to Relocate</label>
+              <select name="Willing to Relocate">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Valid Passport</label>
+              <select name="Valid Passport">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Passport Number</label>
+              <input type="text" name="Passport Number" placeholder="Optional">
+            </div>
+          </div>
+
+          <label>Travel Restrictions</label>
+          <textarea name="Travel Restrictions" placeholder="Do you have any travel restrictions or visa issues?"></textarea>
+
+          <div class="row">
+            <div class="col">
+              <label>Travel Readiness</label>
+              <input type="text" name="Travel Readiness" placeholder="How soon can you travel if hired?">
+            </div>
+            <div class="col">
+              <label>Cold Remote Work</label>
+              <select name="Cold Remote Work">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Ship Work</label>
+              <select name="Ship Work">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ========== HEALTH & LEGAL ========== -->
+        <fieldset>
+          <legend>Health & Legal</legend>
+
+          <label>Disabilities</label>
+          <textarea name="Disabilities" placeholder="Type 'No' if none, or explain your condition if applicable."></textarea>
+
+          <label>Surgery Illness</label>
+          <textarea name="Surgery Illness" placeholder="Type 'No' if none, or describe the surgery/illness and date."></textarea>
+
+          <label>Medications</label>
+          <textarea name="Medications" placeholder="Type 'No' if none, or list the medications and purpose."></textarea>
+
+          <div class="row">
+            <div class="col">
+              <label>Criminal Record</label>
+              <select name="Criminal Record">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Medical Exam Willing</label>
+              <select name="Medical Exam Willing">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ========== JOB-SPECIFIC & SOFT-SKILLS ========== -->
+        <fieldset>
+          <legend>Job-Specific & Soft Skills</legend>
+          <div class="row">
+            <div class="col">
+              <label>Availability Start</label>
+              <select name="Availability Start" required>
+                <option value="">Select</option>
+                <option>Immediately</option>
+                <option>Within 1 Week</option>
+                <option>Within 2 Weeks</option>
+                <option>More than 2 Weeks</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Learning Adaptability</label>
+              <textarea name="Learning Adaptability" placeholder="How quickly do you learn new tasks? Briefly explain."></textarea>
+            </div>
+            <div class="col">
+              <label>Team Conflict Resolution</label>
+              <textarea name="Team Conflict Resolution" placeholder="How do you resolve team conflicts? Briefly explain."></textarea>
+            </div>
+          </div>
+
+          <label>Motivation Strategy</label>
+          <textarea name="Motivation Strategy" placeholder="Describe briefly how you stay motivated at work"></textarea>
+        </fieldset>
+
+        <!-- ========== AGREEMENTS & EXPECTATIONS ========== -->
+        <fieldset>
+          <legend>Agreements & Expectations</legend>
+
+          <div class="row">
+            <div class="col">
+              <label>Accept Any Position</label>
+              <select name="Accept Any Position">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Accommodation Agreement</label>
+              <select name="Accommodation Agreement">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Overtime Willing</label>
+              <select name="Overtime Willing">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Contract Understanding</label>
+              <select name="Contract Understanding">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Work Duration Abroad</label>
+              <input type="text" name="Work Duration Abroad" placeholder="e.g., 1 year, 2 years">
+            </div>
+            <div class="col">
+              <label>Family Support</label>
+              <select name="Family Support">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Understand Long Absence</label>
+              <select name="Understand Long Absence">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Financial Readiness</label>
+              <select name="Financial Readiness">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Salary Expectations</label>
+              <input type="text" name="Salary Expectations" placeholder="e.g., 400 USD/month">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Bring Family Later</label>
+              <select name="Bring Family Later">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Rule Agreement</label>
+              <select name="Rule Agreement">
+                <option value="">Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ========== PAYMENT ========== -->
+        <fieldset>
+          <legend>Payment (required)</legend>
+          <div class="payment-note">
+            <div>Please pay securely via Paystack using the button below. This fee covers application processing and verification.</div>
+            <div class="note">Payment handled securely by Paystack</div>
+          </div>
+
+          <label style="display:flex;gap:8px;align-items:center">
+            <input type="checkbox" id="agreeTerms" required />
+            <span>I confirm the information is accurate and I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a>.</span>
+          </label>
+        </fieldset>
+
+        <div style="display:flex;align-items:center;gap:14px;justify-content:center;margin-top:10px">
+          <button id="payBtn" type="button" class="pay-button" aria-live="polite">
+            <span class="pay-icon" aria-hidden="true">
+              <!-- simple paper-plane svg -->
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="#00c29a"/>
+              </svg>
+            </span>
+            Pay & Submit
+          </button>
+          <div id="status" class="note" aria-live="polite"></div>
+        </div>
+      </form>
+    </main>
+
+    <footer>© <span id="year"></span> Afrevo Global Careers — All rights reserved.</footer>
+  </div>
+
+  <!-- Front-end integration -->
+  <script>
+  (function(){
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ====== CONFIG ======
+    // Your Paystack PUBLIC key (as you requested)
+    const PAYSTACK_PUBLIC_KEY = "pk_test_276098ab77d8214a3a7242628c03dffaee6bb827";
+    // Your deployed Google Apps Script Web App URL (exec)
+    const BACKEND_URL = "https://script.google.com/macros/s/AKfycbzn8XaRzAkdiX4826Uxuh6_u33xtTI9RXhuTw-9QCPbF19EBnnkv6TuK8LULE20rlvE/exec";
+    // Payment setup
+    const CURRENCY = "KES";
+    const AMOUNT_IN_SMALLEST_UNIT = 77300; // KES 773.00 -> 77300
+    // =====================
+
+    const form = document.getElementById('applicationForm');
+    const payBtn = document.getElementById('payBtn');
+    const statusEl = document.getElementById('status');
+
+    function collectFormData(frm){
+      const obj = {};
+      for(const el of frm.elements){
+        if(!el.name) continue;
+        if(el.type === 'checkbox'){
+          if(el.id === 'agreeTerms') { obj.agreed = el.checked; continue; }
+          obj[el.name] = el.checked ? (el.value || 'Yes') : 'No';
+          continue;
+        }
+        if(el.type === 'radio'){
+          if(el.checked) obj[el.name] = el.value;
+          continue;
+        }
+        obj[el.name] = el.value;
+      }
+      return obj;
+    }
+
+    function makeUrlEncodedBody(obj){
+      const params = new URLSearchParams();
+      for(const k in obj){
+        if(!Object.prototype.hasOwnProperty.call(obj,k)) continue;
+        let v = obj[k];
+        if(v === null || typeof v === 'undefined') v = '';
+        if(typeof v === 'object') {
+          try { v = JSON.stringify(v); } catch(e){ v = String(v); }
+        }
+        params.append(k, v);
+      }
+      return params.toString();
+    }
+
+    function makeFullPhone(data){
+      const cc = data['Country Code'] || '';
+      const pn = data['Phone Number'] || data['Phone'] || '';
+      if(!cc) return pn;
+      const cleaned = (''+cc).replace(/\s+/g,'');
+      return (cleaned.startsWith('+') ? cleaned : ('+'+cleaned)) + ' ' + pn;
+    }
+
+    async function parseServerJsonSafe(response, rawText){
+      try {
+        if(!rawText) return null;
+        return JSON.parse(rawText);
+      } catch (err) {
+        console.error('Failed to parse JSON from server. Raw response:', rawText);
+        return { __parseError: true, raw: rawText, parseError: err.toString(), httpStatus: response.status };
+      }
+    }
+
+    payBtn.addEventListener('click', function(){
+      const nameEl = form.querySelector('input[name="Full Name"]');
+      const emailEl = form.querySelector('input[name="Email Address"]');
+      const agree = document.getElementById('agreeTerms');
+      if(!nameEl || !nameEl.value.trim()){ alert('Please enter your full name.'); nameEl.focus(); return; }
+      if(!emailEl || !emailEl.value.trim()){ alert('Please enter your email address.'); emailEl.focus(); return; }
+      if(!agree || !agree.checked){ alert('Please agree to the Terms and Conditions.'); agree.focus(); return; }
+
+      if(payBtn.disabled) return;
+      payBtn.disabled = true;
+      statusEl.textContent = 'Opening secure Paystack checkout...';
+
+      const ref = 'AFREV-' + Date.now().toString(36).toUpperCase();
+
+      const handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: emailEl.value,
+        amount: AMOUNT_IN_SMALLEST_UNIT,
+        currency: CURRENCY,
+        ref: ref,
+        metadata: {
+          custom_fields: [
+            { display_name: "Applicant Name", variable_name: "applicant_name", value: nameEl.value },
+            { display_name: "Application Fee", variable_name: "application_fee", value: "Application Fee" }
+          ]
+        },
+        callback: function(resp){
+          const paymentRef = resp.reference;
+          statusEl.textContent = 'Payment successful — submitting your application...';
+
+          const payload = collectFormData(form);
+          payload.paymentRef = paymentRef;
+          payload.phone = makeFullPhone(payload);
+          payload.SubmissionType = payload.SubmissionType || "APPLICATION";
+          payload.PaidAmountUSD = payload.PaidAmountUSD || "4.99";
+          payload.PaidAmountKES = payload.PaidAmountKES || "400";
+
+          fetch(BACKEND_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+              'Accept': 'application/json'
+            },
+            body: makeUrlEncodedBody(payload)
+          })
+          .then(async r => {
+            let raw = '';
+            try { raw = await r.text(); } catch(e){ raw = ''; }
+
+            const json = await parseServerJsonSafe(r, raw);
+
+            if (!r.ok) {
+              statusEl.textContent = 'Server error while submitting. Keep your ref: ' + paymentRef;
+              alert('Submission error. Keep your payment ref: ' + paymentRef + '\nServer status: ' + r.status + '\nResponse: ' + (json ? JSON.stringify(json) : (raw || '[empty]')) );
+              payBtn.disabled = false;
+              return;
+            }
+
+            if (json && (json.status === 'success' || json.status === 'ok' || json.status === 'OK')) {
+              statusEl.textContent = 'Application submitted successfully. Redirecting...';
+              // Use redirect from your backend (it points to submitted.html with name/email/ref)
+              const redirectTo = json.redirectUrl || 'submitted.html';
+              try {
+                const summary = {
+                  paymentRef: paymentRef,
+                  applicationId: json.applicationId || '',
+                  fullName: payload['Full Name'] || '',
+                  email: payload['Email Address'] || '',
+                  phone: payload.phone || '',
+                  pdfUrl: json.downloadUrl || json.viewUrl || json.pdfUrl || ''
+                };
+                sessionStorage.setItem('afrevoSubmission', JSON.stringify(summary));
+              } catch (e){ /* ignore storage errors */ }
+
+              window.location.href = redirectTo;
+              return;
+            } else {
+              statusEl.textContent = 'Submission error. Keep your ref: ' + paymentRef;
+              alert('Submission error. Keep your payment ref: ' + paymentRef + '\nServer returned: ' + (json ? JSON.stringify(json) : (raw || '[empty]')) );
+              payBtn.disabled = false;
+              return;
+            }
+          })
+          .catch(err=>{
+            statusEl.textContent = 'Network error while submitting. Keep your ref: ' + paymentRef;
+            alert('Network error. Please contact support. Keep your payment reference: ' + paymentRef + '\nError: ' + err.toString());
+            payBtn.disabled = false;
+          });
+        },
+        onClose: function(){
+          statusEl.textContent = 'Payment cancelled.';
+          payBtn.disabled = false;
+        }
+      });
+
+      try {
+        handler.openIframe();
+      } catch (err) {
+        statusEl.textContent = 'Unable to open payment checkout. Please try again later.';
+        alert('Payment initialization failed. See console for details.');
+        payBtn.disabled = false;
+      }
+    });
+
+    // prevent default form submit
+    form.addEventListener('submit', e => { e.preventDefault(); return false; });
+  })();
+  </script>
+</body>
+</html>
