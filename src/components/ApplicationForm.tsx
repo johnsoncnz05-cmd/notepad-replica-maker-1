@@ -125,9 +125,15 @@ export function ApplicationForm() {
       
       if (result.status === 'success') {
         toast.success('Application submitted successfully!');
-        if (result.redirectUrl) {
-          window.location.href = result.redirectUrl;
-        }
+        
+        // Redirect to thank you page with URL parameters
+        const params = new URLSearchParams({
+          name: formData['Full Name'] || '',
+          email: formData['Email Address'] || '',
+          ref: paymentRef
+        });
+        
+        window.location.href = `/thank-you?${params.toString()}`;
       } else {
         toast.error(result.message || 'Application submission failed');
       }
