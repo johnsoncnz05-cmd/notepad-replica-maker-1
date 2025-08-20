@@ -69,7 +69,8 @@ interface FormData {
 }
 
 const PAYSTACK_PUBLIC_KEY = 'pk_live_d12d04e3c1f72132915a0c3b94b02d63671cb0a9';
-const GAS_ENDPOINT = 'YOUR_GAS_WEB_APP_URL_HERE'; // Replace with your actual deployed GAS web app URL
+// TODO: Replace with your actual deployed GAS web app URL
+const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/exec';
 
 export function ApplicationForm() {
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormData>();
@@ -108,10 +109,21 @@ export function ApplicationForm() {
 
   const submitToGAS = async (formData: FormData, paymentRef: string) => {
     try {
+      // Check if GAS endpoint is configured
+      if (GAS_ENDPOINT.includes('XXXXX')) {
+        toast.error('Please configure your Google Apps Script endpoint URL in the code');
+        console.error('GAS_ENDPOINT not configured properly');
+        setIsSubmitting(false);
+        return;
+      }
+
       const payload = {
         ...formData,
         paymentRef: paymentRef
       };
+
+      console.log('Submitting to GAS:', GAS_ENDPOINT);
+      console.log('Payload:', payload);
 
       const response = await fetch(GAS_ENDPOINT, {
         method: 'POST',
@@ -121,7 +133,9 @@ export function ApplicationForm() {
         body: JSON.stringify(payload)
       });
 
+      console.log('Response status:', response.status);
       const result = await response.json();
+      console.log('Response data:', result);
       
       if (result.status === 'success') {
         toast.success('Application submitted successfully!');
@@ -136,6 +150,7 @@ export function ApplicationForm() {
         window.location.href = `/thank-you?${params.toString()}`;
       } else {
         toast.error(result.message || 'Application submission failed');
+        console.error('Submission failed:', result);
       }
     } catch (error) {
       toast.error('Network error. Please try again.');
