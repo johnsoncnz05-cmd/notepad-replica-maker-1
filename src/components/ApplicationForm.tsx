@@ -68,9 +68,8 @@ interface FormData {
   'Rule Agreement': string;
 }
 
-const PAYSTACK_PUBLIC_KEY = 'pk_live_d12d04e3c1f72132915a0c3b94b02d63671cb0a9';
-// TODO: Replace with your actual deployed GAS web app URL
-const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/exec';
+const PAYSTACK_PUBLIC_KEY = 'pk_test_276098ab77d8214a3a7242628c03dffaee6bb827';
+const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzn8XaRzAkdiX4826Uxuh6_u33xtTI9RXhuTw-9QCPbF19EBnnkv6TuK8LULE20rlvE/exec';
 
 export function ApplicationForm() {
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormData>();
@@ -109,13 +108,7 @@ export function ApplicationForm() {
 
   const submitToGAS = async (formData: FormData, paymentRef: string) => {
     try {
-      // Check if GAS endpoint is configured
-      if (GAS_ENDPOINT.includes('XXXXX')) {
-        toast.error('Please configure your Google Apps Script endpoint URL in the code');
-        console.error('GAS_ENDPOINT not configured properly');
-        setIsSubmitting(false);
-        return;
-      }
+      // GAS endpoint is now properly configured
 
       const payload = {
         ...formData,
