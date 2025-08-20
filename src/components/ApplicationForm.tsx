@@ -108,15 +108,16 @@ export function ApplicationForm() {
 
   const submitToGAS = async (formData: FormData, paymentRef: string) => {
     try {
-      // GAS endpoint is now properly configured
-
       const payload = {
         ...formData,
         paymentRef: paymentRef
       };
 
-      console.log('Submitting to GAS:', GAS_ENDPOINT);
-      console.log('Payload:', payload);
+      console.log('Submitting to GAS:', { 
+        endpoint: GAS_ENDPOINT, 
+        paymentRef,
+        dataKeys: Object.keys(payload)
+      });
 
       const response = await fetch(GAS_ENDPOINT, {
         method: 'POST',
@@ -126,29 +127,54 @@ export function ApplicationForm() {
         body: JSON.stringify(payload)
       });
 
-      console.log('Response status:', response.status);
       const result = await response.json();
-      console.log('Response data:', result);
+      console.log('GAS response:', result);
       
       if (result.status === 'success') {
         toast.success('Application submitted successfully!');
         
-        // Redirect to thank you page with URL parameters
-        const params = new URLSearchParams({
-          name: formData['Full Name'] || '',
-          email: formData['Email Address'] || '',
-          ref: paymentRef
-        });
-        
-        window.location.href = `/thank-you?${params.toString()}`;
+        // Use the redirect URL from GAS response
+        if (result.redirectUrl) {
+          console.log('Redirecting to:', result.redirectUrl);
+          window.location.href = result.redirectUrl;
+        } else {
+          // Fallback redirect to thank you page with params
+          const params = new URLSearchParams({
+            name: formData['Full Name'] || '',
+            email: formData['Email Address'] || '',
+            ref: paymentRef
+          });
+          window.location.href = `/thank-you?${params.toString()}`;
+        }
       } else {
-        toast.error(result.message || 'Application submission failed');
-        console.error('Submission failed:', result);
+        // Handle specific error types
+        let errorMessage = result.message || 'Application submission failed';
+        
+        if (result.detail) {
+          errorMessage += `: ${result.detail}`;
+        }
+        
+        if (result.message?.includes('Invalid API key') || result.message?.includes('secret key')) {
+          errorMessage = 'Payment system configuration error. Please contact support.';
+        }
+        
+        console.error('GAS error:', result);
+        throw new Error(errorMessage);
       }
-    } catch (error) {
-      toast.error('Network error. Please try again.');
-      console.error('Submission error:', error);
-    } finally {
+    } catch (error: any) {
+      console.error('GAS submission error:', error);
+      
+      let userMessage = 'Application submission failed';
+      
+      if (error.message?.includes('fetch')) {
+        userMessage = 'Network error. Please check your connection and try again.';
+      } else if (error.message?.includes('configuration')) {
+        userMessage = 'System configuration error. Please contact support.';
+      } else if (error.message) {
+        userMessage = error.message;
+      }
+      
+      toast.error(userMessage);
       setIsSubmitting(false);
     }
   };
