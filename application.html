@@ -24,10 +24,62 @@
       margin:0;color:#222;padding:24px;
     }
     .wrap{max-width:var(--maxw);margin:0 auto}
-    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{height:56px;border-radius:8px;object-fit:contain}
-    h1{font-size:1.25rem;margin:0;color:var(--accent-dark)}
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 0;
+      gap:16px;
+    }
+
+    /* Elegant header */
+    .brand-link{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+      padding:8px 12px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(8,30,30,0.06);
+      transition: transform .08s ease, box-shadow .12s ease;
+    }
+    .brand-link:hover{ transform: translateY(-2px); box-shadow:0 12px 30px rgba(8,30,30,0.08); }
+    .brand-logo{
+      height:48px;
+      width:48px;
+      border-radius:10px;
+      overflow:hidden;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:white;
+      box-shadow:0 6px 16px rgba(0,0,0,0.06);
+      flex-shrink:0;
+    }
+    .brand-logo img{ display:block; height:36px; width:auto; object-fit:contain; }
+
+    .brand-text{ line-height:1; }
+    .brand-text h1{ font-size:1rem; margin:0; color:var(--accent-dark); letter-spacing:0.2px; }
+    .brand-text .sub{ font-size:0.82rem; color:var(--muted); margin-top:2px; }
+
+    nav.main-nav{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      font-weight:600;
+      color:var(--muted);
+    }
+    nav.main-nav a{
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:8px;
+      transition: background .08s ease, color .08s ease;
+    }
+    nav.main-nav a:hover{ background: rgba(0,121,95,0.06); color:var(--accent-dark); }
+
     .card{background:#fff;border-radius:var(--card-radius);box-shadow:0 8px 30px rgba(8,30,30,0.06);padding:28px}
     h2{margin-top:0;color:var(--accent-dark);text-align:center}
     fieldset{border:0;margin:0 0 18px;padding:0}
@@ -57,20 +109,37 @@
     }
     .pay-icon svg{width:18px;height:18px;display:block}
     .flex-right{display:flex;align-items:center;gap:12px}
-    @media (max-width:720px){ .row{flex-direction:column} }
+    .fee-badge{
+      font-weight:700;
+      color:var(--accent-dark);
+      background:linear-gradient(90deg, rgba(0,194,154,0.08), rgba(0,121,95,0.04));
+      padding:8px 12px;border-radius:999px;font-size:0.95rem;
+      display:inline-flex;gap:8px;align-items:center;
+    }
+
+    @media (max-width:720px){ header{flex-direction:column;align-items:flex-start} .row{flex-direction:column} nav.main-nav{align-self:stretch;justify-content:space-between;width:100%} }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="brand">
-        <img src="https://i.imgur.com/2xJX9mG.png" alt="Afrevo logo" />
-        <div>
+      <!-- Home link (logo + title) -->
+      <a href="https://afrevo.com" id="homeLink" class="brand-link" title="Go to Afrevo home">
+        <span class="brand-logo" aria-hidden="true">
+          <img src="https://i.imgur.com/2xJX9mG.png" alt="Afrevo logo" />
+        </span>
+        <span class="brand-text">
           <h1>Afrevo Global Careers</h1>
-          <div class="note">Secure applications & fast processing</div>
-        </div>
-      </div>
-      <nav class="note">Home • Opportunities • FAQ</nav>
+          <div class="sub">Secure applications &amp; fast processing</div>
+        </span>
+      </a>
+
+      <!-- Nav links -->
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="https://afrevo.com" id="navHome">Home</a>
+        <a href="https://afrevo.com/opportunities" id="navOpp">Opportunities</a>
+        <a href="https://afrevo.com/faq" id="navFaq">FAQ</a>
+      </nav>
     </header>
 
     <main class="card" role="main" aria-labelledby="formTitle">
@@ -79,13 +148,13 @@
       <form id="applicationForm" method="POST" novalidate>
         <!-- useful hidden fields -->
         <input type="hidden" name="SubmissionType" value="APPLICATION" />
-        <input type="hidden" name="PaidAmountUSD" value="4.99" />
-        <input type="hidden" name="PaidAmountKES" value="400" />
+        <input type="hidden" name="PaidAmountUSD" value="5.99" />
+        <input type="hidden" name="PaidAmountKES" value="0" />
 
         <!-- ========== JOB CODE ========== -->
         <fieldset>
           <legend>Job Code Quiz</legend>
-          <label for="Job-Codes">Enter job codes (separate with #)</label>
+          <label for="Job-Codes">Please enter the job codes you are applying for and separate each code with a #.</label>
           <input type="text" name="Job Codes" id="Job-Codes" placeholder="WTR12#DRI34#NUR89" required />
           <p class="note">Example: WTR12#DRI34#NUR89</p>
         </fieldset>
@@ -96,23 +165,24 @@
 
           <div class="row">
             <div class="col">
-              <label>Full Name</label>
-              <input type="text" name="Full Name" required />
+              <label for="full-name">What is your full name?</label>
+              <input id="full-name" type="text" name="Full Name" required />
             </div>
             <div class="col">
-              <label>Date of Birth</label>
-              <input type="date" name="Date of Birth" required />
+              <label for="dob">What is your date of birth?</label>
+              <input id="dob" type="date" name="Date of Birth" required />
             </div>
           </div>
 
-          <label for="ID-Number">Government ID Number</label>
+          <label for="ID-Number">What is your government ID number?</label>
           <input type="text" id="ID-Number" name="ID Number" placeholder="Enter ID number" required />
 
           <div class="row">
             <div class="col">
-              <label>Nationality</label>
-              <select name="Nationality" required>
+              <label for="nationality">What is your nationality?</label>
+              <select id="nationality" name="Nationality" required>
                 <option value="">Select nationality</option>
+                <!-- countries omitted for brevity in this block but included below in full code -->
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -312,9 +382,10 @@
             </div>
 
             <div class="col">
-              <label>Country of Residence</label>
-              <select name="Country of Residence" required>
+              <label for="residence">Which country do you currently live in?</label>
+              <select id="residence" name="Country of Residence" required>
                 <option value="">Select your country of residence</option>
+                <!-- full list repeated -->
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -514,7 +585,7 @@
             </div>
           </div>
 
-          <label for="country-code">Phone Number</label>
+          <label for="country-code">Which country code and phone number can we use to contact you?</label>
           <div class="row">
             <select name="Country Code" id="country-code" required style="flex:1; min-width: 200px; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
               <option value="">Select country code</option>
@@ -683,12 +754,12 @@
             <input type="tel" name="Phone Number" placeholder="Enter number" required style="flex:2" />
           </div>
 
-          <label>Email</label>
-          <input type="email" name="Email Address" required />
+          <label for="email">What is your email address?</label>
+          <input id="email" type="email" name="Email Address" required />
 
           <div class="row">
             <div class="col">
-              <label>Marital Status</label>
+              <label>What is your marital status?</label>
               <select name="Marital Status">
                 <option value="">Select</option>
                 <option>Single</option>
@@ -698,11 +769,11 @@
               </select>
             </div>
             <div class="col">
-              <label>religious affiliation?</label>
+              <label>Do you have a religious affiliation? If yes, please state it.</label>
               <input type="text" name="religious affiliation?" placeholder="Optional" />
             </div>
             <div class="col">
-              <label>Gender</label>
+              <label>Which gender do you identify with?</label>
               <select name="Gender">
                 <option value="">Select</option>
                 <option>Male</option>
@@ -711,7 +782,7 @@
               </select>
             </div>
             <div class="col">
-              <label>Number of Dependents</label>
+              <label>How many dependents do you have?</label>
               <input type="text" name="Number of Dependents" placeholder="e.g., 0, 1, 2..." />
             </div>
           </div>
@@ -722,33 +793,38 @@
           <legend>Education & Training</legend>
           <div class="row">
             <div class="col">
-              <label>Education Level</label>
-              <input type="text" name="Education Level" required>
-            </div>
-            <div class="col">
-              <label>Institution Name</label>
-              <input type="text" name="Institution Name">
-            </div>
-            <div class="col">
-              <label>Graduation Year</label>
-              <input type="text" name="Graduation Year" placeholder="e.g., 2021">
-            </div>
-          </div>
-
-          <label>Technical Training</label>
-          <textarea name="Technical Training" placeholder="Any technical or vocational training?"></textarea>
-
-          <div class="row">
-            <div class="col">
-              <label>English Proficiency</label>
-              <select name="English Proficiency">
+              <label for="education-level">What is your highest education level?</label>
+              <select id="education-level" name="Education Level" required>
                 <option value="">Select</option>
-                <option>Yes</option>
-                <option>No</option>
+                <option>Primary</option>
+                <option>Secondary</option>
+                <option>Vocational / Technical</option>
+                <option>Diploma</option>
+                <option>Bachelor's Degree</option>
+                <option>Master's Degree</option>
+                <option>Doctorate</option>
+                <option>Other</option>
               </select>
             </div>
             <div class="col">
-              <label>Other Languages</label>
+              <label>Do you have any technical or vocational training? Please list them briefly.</label>
+              <input type="text" name="Technical Training" placeholder="Certificates, short courses, trade skills" />
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:10px">
+            <div class="col">
+              <label>How would you describe your English proficiency?</label>
+              <select name="English Proficiency">
+                <option value="">Select</option>
+                <option>Fluent</option>
+                <option>Good</option>
+                <option>Basic</option>
+                <option>None</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Do you speak any other languages? Please list them.</label>
               <input type="text" name="Other Languages" placeholder="e.g., Swahili, French"/>
             </div>
           </div>
@@ -758,29 +834,29 @@
         <fieldset>
           <legend>Work Experience</legend>
 
-          <label>Previous Jobs</label>
+          <label>Please describe the jobs you have done previously.</label>
           <textarea name="Previous Jobs" placeholder="What type of jobs have you done?"></textarea>
 
           <div class="row">
             <div class="col">
-              <label>Years of Experience</label>
+              <label>How many years of work experience do you have?</label>
               <input type="text" name="Years of Experience">
             </div>
             <div class="col">
-              <label>Recent Job</label>
+              <label>What was your most recent job title?</label>
               <input type="text" name="Recent Job">
             </div>
           </div>
 
-          <label>Reason for Leaving</label>
+          <label>Why did you leave your most recent job?</label>
           <textarea name="Reason for Leaving"></textarea>
 
-          <label>Overseas Experience</label>
+          <label>Have you worked overseas before? If yes, where and when?</label>
           <textarea name="Overseas Experience" placeholder="Have you worked overseas before? If yes, where?"></textarea>
 
           <div class="row">
             <div class="col">
-              <label>Machinery Experience</label>
+              <label>Do you have experience using heavy machinery?</label>
               <select name="Machinery Experience">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -788,7 +864,7 @@
               </select>
             </div>
             <div class="col">
-              <label>Physically Demanding Work</label>
+              <label>Can you do physically demanding work?</label>
               <select name="Physically Demanding Work">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -796,7 +872,7 @@
               </select>
             </div>
             <div class="col">
-              <label>Night Shift Experience</label>
+              <label>Do you have experience working night shifts?</label>
               <select name="Night Shift Experience">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -812,7 +888,7 @@
 
           <div class="row">
             <div class="col">
-              <label>Willing to Relocate</label>
+              <label>Are you willing to relocate for this job?</label>
               <select name="Willing to Relocate">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -820,7 +896,7 @@
               </select>
             </div>
             <div class="col">
-              <label>Valid Passport</label>
+              <label>Do you have a valid passport?</label>
               <select name="Valid Passport">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -828,21 +904,21 @@
               </select>
             </div>
             <div class="col">
-              <label>Passport Number</label>
+              <label>If you have a passport, what is the passport number?</label>
               <input type="text" name="Passport Number" placeholder="Optional">
             </div>
           </div>
 
-          <label>Travel Restrictions</label>
+          <label>Do you have any travel restrictions or visa issues we should know about?</label>
           <textarea name="Travel Restrictions" placeholder="Do you have any travel restrictions or visa issues?"></textarea>
 
           <div class="row">
             <div class="col">
-              <label>Travel Readiness</label>
+              <label>How soon can you travel if hired?</label>
               <input type="text" name="Travel Readiness" placeholder="How soon can you travel if hired?">
             </div>
             <div class="col">
-              <label>Cold Remote Work</label>
+              <label>Are you able to do remote outdoor (cold) work if required?</label>
               <select name="Cold Remote Work">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -850,7 +926,7 @@
               </select>
             </div>
             <div class="col">
-              <label>Ship Work</label>
+              <label>Are you willing to work on ships if the job requires it?</label>
               <select name="Ship Work">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -864,18 +940,18 @@
         <fieldset>
           <legend>Health & Legal</legend>
 
-          <label>Disabilities</label>
+          <label>Do you have any disabilities? If yes, please explain briefly.</label>
           <textarea name="Disabilities" placeholder="Type 'No' if none, or explain your condition if applicable."></textarea>
 
-          <label>Surgery Illness</label>
+          <label>Have you had any surgeries or major illnesses? If yes, please explain briefly.</label>
           <textarea name="Surgery Illness" placeholder="Type 'No' if none, or describe the surgery/illness and date."></textarea>
 
-          <label>Medications</label>
+          <label>Do you take any regular medications? If yes, please list them.</label>
           <textarea name="Medications" placeholder="Type 'No' if none, or list the medications and purpose."></textarea>
 
           <div class="row">
             <div class="col">
-              <label>Criminal Record</label>
+              <label>Do you have a criminal record?</label>
               <select name="Criminal Record">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -883,7 +959,7 @@
               </select>
             </div>
             <div class="col">
-              <label>Medical Exam Willing</label>
+              <label>Are you willing to take a medical exam if requested?</label>
               <select name="Medical Exam Willing">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -898,7 +974,7 @@
           <legend>Job-Specific & Soft Skills</legend>
           <div class="row">
             <div class="col">
-              <label>Availability Start</label>
+              <label>When can you start work if hired?</label>
               <select name="Availability Start" required>
                 <option value="">Select</option>
                 <option>Immediately</option>
@@ -908,26 +984,28 @@
               </select>
             </div>
             <div class="col">
-              <label>Learning Adaptability</label>
+              <label>How quickly do you learn new tasks? Please explain briefly.</label>
               <textarea name="Learning Adaptability" placeholder="How quickly do you learn new tasks? Briefly explain."></textarea>
             </div>
             <div class="col">
-              <label>Team Conflict Resolution</label>
+              <label>How do you usually resolve conflicts in a team? Please explain briefly.</label>
               <textarea name="Team Conflict Resolution" placeholder="How do you resolve team conflicts? Briefly explain."></textarea>
             </div>
           </div>
 
-          <label>Motivation Strategy</label>
+          <label>What keeps you motivated at work? Please describe briefly.</label>
           <textarea name="Motivation Strategy" placeholder="Describe briefly how you stay motivated at work"></textarea>
         </fieldset>
 
-        <!-- ========== AGREEMENTS & EXPECTATIONS ========== -->
+        <!-- ========== AGREEMENTS & EXPECTATIONS (SHORTENED FOR CLARITY) ========== -->
         <fieldset>
           <legend>Agreements & Expectations</legend>
 
+          <p class="note">Please answer these clearly — they describe key expectations for working abroad.</p>
+
           <div class="row">
             <div class="col">
-              <label>Accept Any Position</label>
+              <label>Are you willing to accept any position offered that matches your skills?</label>
               <select name="Accept Any Position">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -935,57 +1013,26 @@
               </select>
             </div>
             <div class="col">
-              <label>Accommodation Agreement</label>
-              <select name="Accommodation Agreement">
-                <option value="">Select</option>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-            </div>
-            <div class="col">
-              <label>Overtime Willing</label>
+              <label>Are you willing to work overtime when required?</label>
               <select name="Overtime Willing">
                 <option value="">Select</option>
                 <option>Yes</option>
                 <option>No</option>
               </select>
             </div>
-          </div>
-
-          <div class="row">
             <div class="col">
-              <label>Contract Understanding</label>
-              <select name="Contract Understanding">
-                <option value="">Select</option>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-            </div>
-            <div class="col">
-              <label>Work Duration Abroad</label>
-              <input type="text" name="Work Duration Abroad" placeholder="e.g., 1 year, 2 years">
-            </div>
-            <div class="col">
-              <label>Family Support</label>
-              <select name="Family Support">
-                <option value="">Select</option>
-                <option>Yes</option>
-                <option>No</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <label>Understand Long Absence</label>
+              <label>Do you understand that work abroad may require a long absence from home?</label>
               <select name="Understand Long Absence">
                 <option value="">Select</option>
                 <option>Yes</option>
                 <option>No</option>
               </select>
             </div>
+          </div>
+
+          <div class="row" style="margin-top:8px">
             <div class="col">
-              <label>Financial Readiness</label>
+              <label>Are you financially prepared for any initial costs required for employment?</label>
               <select name="Financial Readiness">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -993,14 +1040,7 @@
               </select>
             </div>
             <div class="col">
-              <label>Salary Expectations</label>
-              <input type="text" name="Salary Expectations" placeholder="e.g., 400 USD/month">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <label>Bring Family Later</label>
+              <label>If hired, can you bring your family later if required?</label>
               <select name="Bring Family Later">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -1008,7 +1048,7 @@
               </select>
             </div>
             <div class="col">
-              <label>Rule Agreement</label>
+              <label>Do you agree to follow the employer rules and code of conduct?</label>
               <select name="Rule Agreement">
                 <option value="">Select</option>
                 <option>Yes</option>
@@ -1022,11 +1062,11 @@
         <fieldset>
           <legend>Payment (required)</legend>
           <div class="payment-note">
-            <div>Please pay securely via Paystack using the button below. This fee covers application processing and verification.</div>
-            <div class="note">Payment handled securely by Paystack</div>
+            <div><strong>Application fee:</strong> <span class="fee-badge">$5.99 USD</span></div>
+            <div class="note" style="margin-top:6px">Before submitting you are required to pay the non-refundable application processing fee of <strong>$5.99 (USD)</strong>. Payment is handled securely by Paystack.</div>
           </div>
 
-          <label style="display:flex;gap:8px;align-items:center">
+          <label style="display:flex;gap:8px;align-items:center;margin-top:10px">
             <input type="checkbox" id="agreeTerms" required />
             <span>I confirm the information is accurate and I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a>.</span>
           </label>
@@ -1050,19 +1090,23 @@
     <footer>© <span id="year"></span> Afrevo Global Careers — All rights reserved.</footer>
   </div>
 
-  <!-- Front-end integration -->
+  <!-- Front-end integration (complete) -->
   <script>
   (function(){
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ====== CONFIG ======
-    // Your Paystack PUBLIC key (as you requested)
-    const PAYSTACK_PUBLIC_KEY = "pk_test_276098ab77d8214a3a7242628c03dffaee6bb827";
-    // Your deployed Google Apps Script Web App URL (exec)
-    const BACKEND_URL = "https://script.google.com/macros/s/AKfycbzn8XaRzAkdiX4826Uxuh6_u33xtTI9RXhuTw-9QCPbF19EBnnkv6TuK8LULE20rlvE/exec";
-    // Payment setup
-    const CURRENCY = "KES";
-    const AMOUNT_IN_SMALLEST_UNIT = 77300; // KES 773.00 -> 77300
+   // ====== CONFIG ======
+// Put your Paystack PUBLIC key here (keep secret key only on server)  
+const PAYSTACK_PUBLIC_KEY = "pk_test_276098ab77d8214a3a7242628c03dffaee6bb827";  
+
+// Replace with your deployed Google Apps Script Web App URL (exec)  
+const BACKEND_URL = "https://script.google.com/macros/s/AKfycbynKjFw1M-1TEt85-qyhTivdTUpaPHgMph4xsnPge2bkPYSX3P2_OECsQd_914P36M2/exec";  
+
+const CURRENCY = "KES";  
+
+const AMOUNT_IN_SMALLEST_UNIT = 77600; // KES 776 => 776 * 100  
+
+
     // =====================
 
     const form = document.getElementById('applicationForm');
@@ -1106,7 +1150,7 @@
       const pn = data['Phone Number'] || data['Phone'] || '';
       if(!cc) return pn;
       const cleaned = (''+cc).replace(/\s+/g,'');
-      return (cleaned.startsWith('+') ? cleaned : ('+'+cleaned)) + ' ' + pn;
+      return (cleaned.startsWith('+') ? cleaned : ('+'+cleaned)) + (pn ? ' ' + pn : '');
     }
 
     async function parseServerJsonSafe(response, rawText){
@@ -1117,6 +1161,62 @@
         console.error('Failed to parse JSON from server. Raw response:', rawText);
         return { __parseError: true, raw: rawText, parseError: err.toString(), httpStatus: response.status };
       }
+    }
+
+    async function tryFetchToBackend(payload) {
+      try {
+        const body = makeUrlEncodedBody(payload);
+        const resp = await fetch(BACKEND_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8', 'Accept': 'application/json' },
+          body: body,
+          credentials: 'omit',
+          mode: 'cors',
+          cache: 'no-store'
+        });
+        const text = await resp.text();
+        let parsed = null;
+        try { parsed = JSON.parse(text); } catch(e){ parsed = null; }
+        return { ok: resp.ok, status: resp.status, parsed, raw: text };
+      } catch (err) {
+        console.warn('fetch to backend failed', err);
+        return { ok: false, error: err };
+      }
+    }
+
+    function trySendBeacon(payload) {
+      try {
+        if (!navigator.sendBeacon) return false;
+        const data = typeof payload === 'string' ? payload : JSON.stringify(payload);
+        const blob = new Blob([data], { type: 'application/json' });
+        const sent = navigator.sendBeacon(BACKEND_URL, blob);
+        console.log('sendBeacon result:', sent);
+        return sent;
+      } catch (err) {
+        console.warn('sendBeacon failed', err);
+        return false;
+      }
+    }
+
+    function submitFormFallback(payload) {
+      const f = document.createElement('form');
+      f.method = 'POST';
+      f.action = BACKEND_URL;
+      f.style.display = 'none';
+      for (const k in payload) {
+        if(!Object.prototype.hasOwnProperty.call(payload,k)) continue;
+        const inp = document.createElement('input');
+        inp.type = 'hidden';
+        inp.name = k;
+        let v = payload[k];
+        if(v === null || typeof v === 'undefined') v = '';
+        if(typeof v === 'object') v = JSON.stringify(v);
+        inp.value = v;
+        f.appendChild(inp);
+      }
+      document.body.appendChild(f);
+      f.submit();
+      return true;
     }
 
     payBtn.addEventListener('click', function(){
@@ -1142,71 +1242,76 @@
         metadata: {
           custom_fields: [
             { display_name: "Applicant Name", variable_name: "applicant_name", value: nameEl.value },
-            { display_name: "Application Fee", variable_name: "application_fee", value: "Application Fee" }
+            { display_name: "Application Fee", variable_name: "application_fee", value: "$5.99" }
           ]
         },
         callback: function(resp){
-          const paymentRef = resp.reference;
-          statusEl.textContent = 'Payment successful — submitting your application...';
+          (async function(){
+            const paymentRef = resp.reference;
+            statusEl.textContent = 'Payment successful — submitting your application...';
 
-          const payload = collectFormData(form);
-          payload.paymentRef = paymentRef;
-          payload.phone = makeFullPhone(payload);
-          payload.SubmissionType = payload.SubmissionType || "APPLICATION";
-          payload.PaidAmountUSD = payload.PaidAmountUSD || "4.99";
-          payload.PaidAmountKES = payload.PaidAmountKES || "400";
+            const payload = collectFormData(form);
+            payload.paymentRef = paymentRef;
+            payload.phone = makeFullPhone(payload);
+            payload.SubmissionType = payload.SubmissionType || "APPLICATION";
+            payload.PaidAmountUSD = payload.PaidAmountUSD || "5.99";
+            payload.PaidAmountKES = payload.PaidAmountKES || "0";
 
-          fetch(BACKEND_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-              'Accept': 'application/json'
-            },
-            body: makeUrlEncodedBody(payload)
-          })
-          .then(async r => {
-            let raw = '';
-            try { raw = await r.text(); } catch(e){ raw = ''; }
+            // try fetch to backend
+            const fetchResult = await tryFetchToBackend(payload);
 
-            const json = await parseServerJsonSafe(r, raw);
-
-            if (!r.ok) {
-              statusEl.textContent = 'Server error while submitting. Keep your ref: ' + paymentRef;
-              alert('Submission error. Keep your payment ref: ' + paymentRef + '\nServer status: ' + r.status + '\nResponse: ' + (json ? JSON.stringify(json) : (raw || '[empty]')) );
-              payBtn.disabled = false;
-              return;
-            }
-
-            if (json && (json.status === 'success' || json.status === 'ok' || json.status === 'OK')) {
-              statusEl.textContent = 'Application submitted successfully. Redirecting...';
-              // Use redirect from your backend (it points to submitted.html with name/email/ref)
-              const redirectTo = json.redirectUrl || 'submitted.html';
+            if (fetchResult && fetchResult.ok) {
+              const redirectTo = (fetchResult.parsed && (fetchResult.parsed.redirectUrl || fetchResult.parsed.redirect)) || null;
               try {
                 const summary = {
                   paymentRef: paymentRef,
-                  applicationId: json.applicationId || '',
+                  applicationId: (fetchResult.parsed && fetchResult.parsed.applicationId) || '',
                   fullName: payload['Full Name'] || '',
                   email: payload['Email Address'] || '',
-                  phone: payload.phone || '',
-                  pdfUrl: json.downloadUrl || json.viewUrl || json.pdfUrl || ''
+                  phone: payload.phone || ''
                 };
                 sessionStorage.setItem('afrevoSubmission', JSON.stringify(summary));
-              } catch (e){ /* ignore storage errors */ }
+              } catch (e){}
 
-              window.location.href = redirectTo;
-              return;
-            } else {
-              statusEl.textContent = 'Submission error. Keep your ref: ' + paymentRef;
-              alert('Submission error. Keep your payment ref: ' + paymentRef + '\nServer returned: ' + (json ? JSON.stringify(json) : (raw || '[empty]')) );
-              payBtn.disabled = false;
+              if (redirectTo) {
+                window.location.href = redirectTo;
+                return;
+              } else {
+                window.location.href = 'thank-you.html?name=' + encodeURIComponent(payload['Full Name'] || '') + '&ref=' + encodeURIComponent(paymentRef);
+                return;
+              }
+            }
+
+            // fallback to sendBeacon
+            const beaconSent = trySendBeacon(payload);
+            if (beaconSent) {
+              try {
+                sessionStorage.setItem('afrevoSubmission', JSON.stringify({
+                  paymentRef: paymentRef,
+                  applicationId: '',
+                  fullName: payload['Full Name'] || '',
+                  email: payload['Email Address'] || '',
+                  phone: payload.phone || ''
+                }));
+              } catch(e){}
+              statusEl.textContent = 'Application submitted (fallback). Redirecting...';
+              setTimeout(()=> {
+                window.location.href = 'thank-you.html?name=' + encodeURIComponent(payload['Full Name'] || '') + '&ref=' + encodeURIComponent(paymentRef);
+              }, 700);
               return;
             }
-          })
-          .catch(err=>{
-            statusEl.textContent = 'Network error while submitting. Keep your ref: ' + paymentRef;
-            alert('Network error. Please contact support. Keep your payment reference: ' + paymentRef + '\nError: ' + err.toString());
-            payBtn.disabled = false;
-          });
+
+            // final fallback: classical form submit (navigates to GAS)
+            try {
+              statusEl.textContent = 'Submitting using classic form fallback...';
+              submitFormFallback(payload);
+            } catch (err) {
+              console.error('All submission methods failed', err);
+              alert('Submission error. Keep your payment reference: ' + paymentRef + '. Contact support.');
+              statusEl.textContent = 'Submission error. Keep your ref: ' + paymentRef;
+              payBtn.disabled = false;
+            }
+          })();
         },
         onClose: function(){
           statusEl.textContent = 'Payment cancelled.';
@@ -1218,13 +1323,35 @@
         handler.openIframe();
       } catch (err) {
         statusEl.textContent = 'Unable to open payment checkout. Please try again later.';
-        alert('Payment initialization failed. See console for details.');
+        console.error('Paystack open iframe failed', err);
         payBtn.disabled = false;
       }
     });
 
     // prevent default form submit
     form.addEventListener('submit', e => { e.preventDefault(); return false; });
+
+    // header links: confirm if form has data
+    function formHasData() {
+      return Array.from(form.elements).some(i => {
+        if(!i.name) return false;
+        if(i.type === 'checkbox' || i.type === 'radio') return i.checked;
+        return (i.value && String(i.value).trim() !== '');
+      });
+    }
+
+    const homeLink = document.getElementById('homeLink');
+    const navHome = document.getElementById('navHome');
+    [homeLink, navHome].forEach(el => {
+      if(!el) return;
+      el.addEventListener('click', function(evt){
+        if(formHasData()) {
+          const ok = confirm('You have filled the form. Leaving this page will discard your entries. Continue to Home?');
+          if(!ok) evt.preventDefault();
+        }
+      });
+    });
+
   })();
   </script>
 </body>
